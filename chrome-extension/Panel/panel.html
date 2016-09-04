@@ -1,0 +1,29 @@
+
+<link rel="stylesheet" href="Graph/graph.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+
+<div id="control_panel">
+
+  <div id="variable_input">
+    <input type="text" placeholder="Window Variable" id="globalVarInput" />
+    <button id="loadGraphBtn">Load Graph</button>
+    <input type="text" placeholder="substate/substate" id="substateInput" />
+  </div>
+
+  <div id="events_control">
+    <label class="toggleLbl" for="toggleEventsShowHide"> Events: </label>
+    <span class="checkbox">
+      <input type="checkbox" id="toggleEventsShowHide">
+      <label data-on="ON" data-off="OFF"></label>
+    </span>
+  </div>
+</div>
+
+<div id="d3_content"></div>
+
+<script src="panel.js" charset="utf-8"></script>
+<!-- <script src="Graph/d3.min.js" charset="utf-8"></script> -->
+<script src="Graph/defaultState.js" charset="utf-8"></script>
+
+<script src="Graph/statechartjs-graph.js" charset="utf-8"></script>
+<script src="Graph/graph.js" charset="utf-8"></script>

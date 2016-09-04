@@ -1,30 +1,21 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
-import istanbul from 'rollup-plugin-istanbul';
 
-let pkg = require('./package.json');
-let external = Object.keys(pkg.dependencies);
-
+// TODO: run a script file on `| entr` and print status, timestamp stead of just invoking rollup -c
 export default {
-  entry: 'lib/index.js',
-  plugins: [
-    babel(babelrc()),
-    istanbul({
-      exclude: ['test/**/*', 'node_modules/**/*']
-    })
-  ],
-  external: external,
+  plugins: [babel(babelrc())],
+  entry: 'src/index.js',
+  // dest: 'dist/statechartjs-graph.js',
   targets: [
     {
-      dest: pkg['main'],
-      format: 'umd',
-      moduleName: 'rollupStarterProject',
-      sourceMap: true
-    },
-    {
-      dest: pkg['jsnext:main'],
-      format: 'es',
-      sourceMap: true
+      dest: 'dist/statechartjs-graph.js'
     }
-  ]
+    // can be more
+  ],
+  format: 'umd',
+  moduleName: "statechartjsGraph",
+  external: [
+    'statechartjs'
+  ],
+  globals: {}
 };

@@ -1,0 +1,30 @@
+<!doctype html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+
+<link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8"/>
+
+<body>
+
+<div id="control_panel">
+
+  <div id="variable_input">
+    <input type="text" placeholder="Window Variable" id="globalVarInput" />
+    <button id="loadGraphBtn">Load Graph</button>
+    <input type="text" placeholder="substate/substate" id="substateInput" />
+  </div>
+
+  <div id="events_control">
+    <label class="toggleLbl" for="toggleEventsShowHide"> Events: </label>
+    <span class="checkbox">
+      <input type="checkbox" id="toggleEventsShowHide" onclick="toggleEvents()">
+      <label data-on="ON" data-off="OFF"></label>
+    </span>
+  </div>
+
+
+</div>
+
+<script type="text/javascript" src="tilfordTree.js"> </script>
+
+</body>

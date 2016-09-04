@@ -1,52 +1,30 @@
 {
-  "name": "statechart-graph",
-  "version": "0.0.1",
-  "description": "generating d3 treegraphs from statechart.js states",
-  "main": "dist/statechart-graph.js",
-  "module": "dist/statechart-graph.mjs",
-  "jsnext:main": "dist/statechart-graph.mjs",
+  "name": "statechartjs-graph",
+  "version": "0.0.7",
   "scripts": {
-    "prebuild": "eslint lib test",
-    "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "pretest": "npm run build",
-    "test": "mocha",
-    "prepublish": "npm test",
-    "tw": "find lib/ | entr npm run test"
+    "run": "babel-node ./bin/run.js",
+    "test": "babel-node spec/run.js || true",
+    "debug": "babel-node-debug spec/run.js",
+    "live2": "find src/ | entr rollup -c",
+    "live": "rollup -c -w",
+    "tw": "find src/ | entr npm run test"
   },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "babelrc-rollup": "^2.0.0",
+    "jasmine": "^2.4.1",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-watch": "^2.5.0"
+  },
+  "format": "es6",
+  "main": "dist/statechartjs-graph.js",
+  "bin": "dist/statechartjs-graph.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rollup/rollup-starter-project.git"
+    "url": "https://github.com/congwenm/statechartjs-tilford-graph.git"
   },
-  "keywords": [
-    "chrome-extension",
-    "statechart-graph",
-    "statechart",
-    "statechartjs",
-    "treegraph"
-  ],
-  "author": "Congwen Ma",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rollup/rollup-starter-project/issues"
-  },
-  "files": [
-    "lib",
-    "dist"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "babel-eslint": "^6.1.2",
-    "babel-plugin-external-helpers": "^6.8.0",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-register": "^6.11.6",
-    "babelrc-rollup": "^3.0.0",
-    "eslint": "^3.2.2",
-    "istanbul": "^0.4.4",
-    "mocha": "^3.0.2",
-    "rollup": "^0.34.7",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-plugin-istanbul": "^1.0.0",
-    "rollup-watch": "^2.5.0"
+  "dependencies": {
+    "babel-cli": "^6.10.1",
+    "statechartjs": "^0.1.2"
   }
 }

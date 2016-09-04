@@ -1,15 +1,16 @@
-## Statechart Tilford Graph
+// Used for testing
 
-This module creates a tilford tree graph for [Statechart.js](https://github.com/burrows/statechart.js/tree/master)
+// TODO: replace with burrows/statechart.js when done writing tests
+// import {RoutableState} from 'burrows/statechart.js';
+import statechart, { RoutableState } from 'statechartjs';
 
-####Code:
-```javascript
-var State = require('statechartjs').State;
-
-var word = State.define({concurrent: true}, function() {
+var word = RoutableState.define({concurrent: true}, function() {
   this.state('bold', function() {
     this.state('off', function() {
       this.event('toggleBold', function() { this.goto('../on'); });
+      this.canExit = function() {
+        console.log('can exit');
+      }
     });
 
     this.state('on', function() {
@@ -58,17 +59,33 @@ var word = State.define({concurrent: true}, function() {
 
   this.event('resetClicked', function() { this.goto(); });
 });
-```
+word.goto();
+word.current(); // => ['/bold/off', '/underline/off', '/align/left', '/bullets/none']
 
-#### Generated graph
-![graph](https://github.com/congwenm/statechartjs-tilford-graph/blob/master/samplestate.png)
+word.send('toggleBold');
+word.current(); // => ['/bold/on', '/underline/off', '/align/left', '/bullets/none']
+
+word.send('toggleUnderline');
+word.current(); // => ['/bold/on', '/underline/on', '/align/left', '/bullets/none']
+
+word.send('rightClicked');
+word.current(); // => ['/bold/on', '/underline/on', '/align/right', '/bullets/none']
+
+word.send('justifyClicked');
+word.current(); // => ['/bold/on', '/underline/on', '/align/justify', '/bullets/none']
+
+word.send('regularClicked');
+word.current(); // => ['/bold/on', '/underline/on', '/align/justify', '/bullets/regular']
+
+word.send('regularClicked');
+word.current(); // => ['/bold/on', '/underline/on', '/align/justify', '/bullets/none']
+
+word.send('numberClicked');
+word.current(); // => ['/bold/on', '/underline/on', '/align/justify', '/bullets/number']
+
+word.send('resetClicked');
+word.current(); // => ['/bold/off', '/underline/off', '/align/left', '/bullets/none']
 
 
-####./test-site
-old version of statechartjs
-####./sample-instance
-site ready to be inspected via devtools
-####./dist
-new statechart actively compiled from `nr live`
-####chrome-extension
-devtool
+export default word;
+

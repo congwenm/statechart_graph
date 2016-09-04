@@ -13,12 +13,29 @@ export default {
       exclude: ['test/**/*', 'node_modules/**/*']
     })
   ],
-  external: external,
+  external: [...external],
   targets: [
+    // sandbox
+    {
+      dest: './sandbox/statechart-graph.js',
+      format: 'umd',
+      moduleName: 'statechart_graph',
+      sourceMap: true
+    },
+
+    // chrome-extension
+    {
+      dest: './chrome-extension/Panel/Graph/statechart-graph.js',
+      format: 'umd',
+      moduleName: 'statechart_graph',
+      sourceMap: true
+    },
+
+    // dist
     {
       dest: pkg['main'],
       format: 'umd',
-      moduleName: 'rollupStarterProject',
+      moduleName: 'statechart_graph',
       sourceMap: true
     },
     {
@@ -26,5 +43,8 @@ export default {
       format: 'es',
       sourceMap: true
     }
-  ]
+  ],
+  globals: {
+
+  }
 };

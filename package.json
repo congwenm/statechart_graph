@@ -34,7 +34,9 @@
     "lib",
     "dist"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "statechartjs": "^0.2.0"
+  },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-plugin-external-helpers": "^6.8.0",

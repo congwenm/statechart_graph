@@ -17,7 +17,7 @@ svg { background-color: white;}
 .node text.stateName {
   font: 16px fantasy;
 }
-.node text.eventName {
+.node text.eventName, .legends text.eventName {
   fill: #555588;
   text-decoration: underline;
   text-decoration-style: dashed;

@@ -9,6 +9,7 @@
     "prebuild": "eslint lib test",
     "build": "rollup -c",
     "watch": "rollup -c -w",
+    "poorman:watch": "find lib/ | entr rollup -c",
     "pretest": "npm run build",
     "test": "mocha",
     "prepublish": "npm test",

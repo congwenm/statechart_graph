@@ -11,7 +11,7 @@ window.initiate = function(stateObj) {
   }
 
   document.getElementById("toggleEventsShowHide")
-    .addEventListener("click", window.graph.toggleEvents, false)
+    .addEventListener("click", window.graph.toggleEvents.bind(window.graph), false)
 };
 
 initiate();

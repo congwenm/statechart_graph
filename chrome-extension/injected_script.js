@@ -11,7 +11,7 @@ window.sendState = (function() {
   }
 
   var getSubState = function(state, string) {
-    var arr = string.split(/[\/\.]/);
+    var arr = string.split(/[\/\.]/).filter(path => path);
     arr.forEach(stateName => {
       state = state.substateMap[stateName]
     })
@@ -52,9 +52,10 @@ window.sendState = (function() {
 
     try {
       state = getStateDefinition(varname);
-      if (substatesPath && substatesPath.length) {
-        state = getSubState(state, substatesPath);
-      }
+      // ignoring substatesPath due to difficulty in changing current branchoff algorithm
+      // if (substatesPath && substatesPath.length) {
+      //   state = getSubState(state, substatesPath);
+      // }
     }
     catch(e) {
       console.error(`Can't parse statechart object and path: ${varname}, ${substatesPath}`);

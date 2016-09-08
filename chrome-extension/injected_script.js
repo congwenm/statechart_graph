@@ -54,13 +54,13 @@ window.sendState = (function() {
       state = getStateDefinition(varname);
       // ignoring substatesPath due to difficulty in changing current branchoff algorithm
       // if (substatesPath && substatesPath.length) {
-      //   state = getSubState(state, substatesPath);
+        // state = getSubState(state, substatesPath);
       // }
     }
     catch(e) {
       console.error(`Can't parse statechart object and path: ${varname}, ${substatesPath}`);
     }
-    // console.log('CHECKING', window[varname]);
+    // console.log('CHECKING', window[varname], convertToJSON(state));
     window.postMessage({
       greeting: 'injected script says hello there!',
       state: convertToJSON(state),

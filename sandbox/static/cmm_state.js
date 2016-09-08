@@ -1,11 +1,4 @@
-window.stateObj = {
-  "name": "enter a global state variable",
-  "concurrent": false,
-  "events": [],
-  "children": []
-}
-||
-{
+window.cmm_state = {
   "level": 0,
   "isActive": true,
   "name": "__root__",

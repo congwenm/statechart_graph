@@ -10,6 +10,21 @@ svg { background-color: white;}
   stroke-width: 1.5px;
 }
 
+.node line {
+  display: none;
+}
+.node line.enterHandler,
+.node line.exitHandler {
+  display: block;
+  stroke-width: 3px;
+}
+.node line.enterHandler{
+  stroke: green;
+}
+.node line.exitHandler{
+  stroke: red;
+}
+
 .node text {
   font: 10px sans-serif;
 }
@@ -37,21 +52,21 @@ svg { background-color: white;}
 
 /*toggler */
 #bg {
-	position:fixed;
-	top:-50%;
-	left:-50%;
-	width:100%;
-	height:100%;
+  position:fixed;
+  top:-50%;
+  left:-50%;
+  width:100%;
+  height:100%;
 }
 #bg img {
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	margin:auto;
-	min-width:50%;
-	min-height:50%;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+  min-width:50%;
+  min-height:50%;
 }
 
 .checkbox {
@@ -132,6 +147,53 @@ svg { background-color: white;}
 }
 
 
+/* control-panel */
+#control_panel {
+  color: black;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  font-family: arial;
+}
+#control_panel .subcontrols {
+  border: 1px dotted #ccc;
+  display: inline-block;
+  padding: 3px 5px;
+  vertical-align: top;
+  box-shadow: #ccc 1px 1px 1px 1px;
+}
+
+#float_panel {
+  border: 2px solid #ccc;
+  box-shadow: #ccc 1px 2px 3px 4px;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 100px;
+  left: 40px;
+}
+#float_panel .subcontrols label{
+  vertical-align: top;
+}
+
+#events_control {
+  overflow: hidden;
+}
+button {
+  padding: 5px;
+  font-size: 16px;
+}
+input {
+  font-size: 20px;
+  vertical-align: top;
+  padding: 3px;
+}
+svg {
+  border: 1px solid #ccc;
+  margin: 0 5px;
+  background-color: white;
+}
 
 
 
@@ -261,4 +323,3 @@ svg { background-color: white;}
   40% {
     -webkit-transform: scale(1);
             transform: scale(1); } }
-

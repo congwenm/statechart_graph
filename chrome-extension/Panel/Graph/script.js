@@ -2,8 +2,13 @@ window.state = {};
 
 const loaderElement = document.getElementById('loader')
 
+const castrationInput = document.getElementById('castrationInput')
+
 window.initiate = function(stateObj) {
-  window.graph = new statechartGraph.Graph({ metadata: stateObj });
+  window.graph = new statechartGraph.Graph({ 
+    metadata: stateObj, 
+    cfg: window.graph ? graph.cfg : {} 
+  });
 
   // Events
   window.graph.exportPathCallback = function(path) {
@@ -13,10 +18,20 @@ window.initiate = function(stateObj) {
     loaderElement.style.display = isBusy ? "block" : "none"
   }
 
-  window.graph.buildTree();
+  if (typeof stateObj === 'object') {
+    window.graph.buildTree();
+  }
 
   document.getElementById("toggleEventsShowHide")
     .addEventListener("click", window.graph.toggleEvents.bind(window.graph), false)
+
+  document.getElementById("toggleEnterExitHandlers")
+    .addEventListener("click", window.graph.toggleEnterExitHandlers.bind(window.graph), false)
+
+  castrationInput.addEventListener('change', () => {
+    window.graph.cfg.castrationLevel = castrationInput.value
+    window.graph.castrateState()
+  })
 };
 
 initiate();

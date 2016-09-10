@@ -1,7 +1,10 @@
 const {Graph, serialize} = statechartGraph;
 
 const substateInput = document.getElementById('substateInput')
+
 const loaderElement = document.getElementById('loader')
+
+const castrationInput = document.getElementById('castrationInput')
 
 function setup() {
   // window.stateObj = serialize(window.word);
@@ -9,10 +12,14 @@ function setup() {
 
   window.graph = new Graph({ metadata: window.stateObj })
 
-
   // events
   document.getElementById('loadGraphBtn').addEventListener('click', ()=> {
     graph.reinitiateRoot()
+  })
+
+  castrationInput.addEventListener('change', () => {
+    graph.cfg.castrationLevel = castrationInput.value
+    graph.castrateState()
   })
 
   window.graph.exportPathCallback = function(path) {

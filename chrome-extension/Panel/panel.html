@@ -4,24 +4,56 @@
 
 <div id="control_panel">
 
-  <div id="variable_input">
+  <div id="variable_input" class="subcontrols">
     <input type="text" placeholder="Window Variable" id="globalVarInput" />
     <button id="loadGraphBtn">Load Graph</button>
-    <input type="text" placeholder="substate/substate" id="substateInput" />
+
+    <span style="padding-left: 20px">
+      <label class="toggleLbl" for="castrationInput">
+        Depth:
+      </label>
+
+      <input type="text"
+        id="castrationInput"
+        placeholder="e.g. 5"
+        size="5"
+      />
+    </span>
   </div>
 
-  <div id="events_control">
-    <label class="toggleLbl" for="toggleEventsShowHide"> Events: </label>
+  <div class="subcontrols">
+    <input type="text" placeholder="substate/substate" id="substateInput" />
+  </div>
+</div>
+
+<div id="float_panel">
+  <div id="events_control" class="subcontrols">
     <span class="checkbox">
       <input type="checkbox" id="toggleEventsShowHide">
       <label data-on="ON" data-off="OFF"></label>
     </span>
+
+    <label class="toggleLbl" for="toggleEventsShowHide">
+      Events
+    </label>
+  </div>
+
+  <div id="events_control" class="subcontrols">
+    <span class="checkbox">
+      <input type="checkbox" id="toggleEnterExitHandlers">
+      <label data-on="ON" data-off="OFF"></label>
+    </span>
+
+    <label class="toggleLbl" for="toggleEnterExitHandlers">
+      Enter/Exit
+    </label>
   </div>
 </div>
 
+
 <div id="d3_content"></div>
 
-<div id="loader">
+<div id="loader" style="display: none">
   <div class="sk-circle">
     <div class="sk-circle1 sk-child"></div>
     <div class="sk-circle2 sk-child"></div>
@@ -39,7 +71,7 @@
 </div>
 
 <script src="panel.js" charset="utf-8"></script>
-<!-- <script src="Graph/d3.min.js" charset="utf-8"></script> -->
+<script src="Graph/d3.min.js" charset="utf-8"></script>
 <script src="Graph/defaultState.js" charset="utf-8"></script>
 
 <script src="Graph/statechart-graph.js" charset="utf-8"></script>

@@ -14,6 +14,11 @@ Upcoming work
       * empty vs filled node
       * black vs light box
       * events
+[x] - enter / exit indicator
+[x] - castration
+[ ] - ui format
+[ ] - performance
+[ ] - remove node
 
 
 

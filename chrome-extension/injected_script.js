@@ -20,17 +20,19 @@ window.sendState = (function() {
 
   var convertToJSON = (function() {
     function convertState(state, level = 0) {
-      const { name, substates, concurrent, events, history } = state;
+      const { name, substates, concurrent, events, history, enters, exits } = state;
 
       const convertedSubstates = substates && substates.length ? substates.map(substate => {
         return convertState(substate, level+1)
       }) : null;
 
       return {
+        name: name || "<nameless>", concurrent: concurrent, events: convertEvent(events),
         level: level,
         isActive: state.current().length > 0,
-        name: name || "<nameless>", concurrent: concurrent, events: convertEvent(events),
-        children: convertedSubstates
+        children: convertedSubstates,
+        hasEnterHandler: !!enters.length,
+        hasExitHandler: !!exits.length,
       };
     }
 

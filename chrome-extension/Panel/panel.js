@@ -6,6 +6,5 @@ var substateInput = document.getElementById('substateInput');
 
 loadGraphBtn.addEventListener('click', function() {
   console.log('CLICKED BUTTON', window.getStateRequest, globalVarInput.value);
-  window.graph.setBusy(true);
   window.getStateRequest(globalVarInput.value, substateInput.value);
 })

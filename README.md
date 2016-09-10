@@ -61,4 +61,4 @@ var word = State.define({concurrent: true}, function() {
 ```
 
 #### Generated graph
-![graph](https://github.com/congwenm/statechartjs-tilford-graph/blob/master/samplestate.png)
+![graph](https://github.com/congwenm/statechart_graph/blob/master/samplestate.png)

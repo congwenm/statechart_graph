@@ -1,12 +1,18 @@
-const { RoutableState } = statechart;
+var State = statechart.State;
 
-window.word = RoutableState.define({concurrent: true}, function() {
+var word = State.define({concurrent: true}, function() {
   this.state('bold', function() {
+    this.exit(function() {
+
+    })
     this.state('off', function() {
       this.event('toggleBold', function() { this.goto('../on'); });
-      this.canExit = function() {
-        console.log('can exit');
-      }
+      this.state('offOne', function() {
+
+      })
+      this.state('offTwo', function() {
+
+      })
     });
 
     this.state('on', function() {
@@ -15,6 +21,9 @@ window.word = RoutableState.define({concurrent: true}, function() {
   });
 
   this.state('underline', function() {
+    this.enter(function() {
+
+    })
     this.state('off', function() {
       this.event('toggleUnderline', function() { this.goto('../on'); });
     });
@@ -25,6 +34,12 @@ window.word = RoutableState.define({concurrent: true}, function() {
   });
 
   this.state('align', function() {
+    this.exit(function() {
+
+    })
+    this.enter(function() {
+
+    })
     this.state('left');
     this.state('right');
     this.state('center');
@@ -55,6 +70,7 @@ window.word = RoutableState.define({concurrent: true}, function() {
 
   this.event('resetClicked', function() { this.goto(); });
 });
+
 word.goto();
 word.current(); // => ['/bold/off', '/underline/off', '/align/left', '/bullets/none']
 

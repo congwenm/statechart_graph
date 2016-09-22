@@ -9,6 +9,17 @@
   </head>
 
   <body>
+
+    <script>
+      const gotoState1 = a => window.word.send('toggleBold')
+      const gotoState2 = a => window.word.send('toggleUnderline')
+    </script>
+    <div id="app">
+      Current application state
+      <button type="button" name="button" onClick="gotoState1()">goto state1</button>
+      <button type="button" name="button" onClick="gotoState2()">goto state2</button>
+    </div>
+    
     <h1>Sample state</h1>
 
   </body>

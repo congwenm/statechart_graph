@@ -16,14 +16,19 @@ Upcoming work
       * events
 [x] - enter / exit indicator
 [x] - castration
-[ ] - ui format
-[ ] - performance
+[ ] - ui format (lost context)
+[ ] - performance (performance of rendering)
 [ ] - remove node
+[x] - auto reload
+[x] - reinstate substatepath so we can send a small portion of the changes.
+[x] - consider sending a separate event for live reload, possible use path to send a smaller patch of Change.
+[ ] - Change the behavior for loader so it shows up at the correct interval
+[x] - break out linear logic so that using this in chrome devtool is same as using in sandbox just with different MidwareObject.
 
 
+Things needed to be considered for extracting middleware/bridge for chrome-extension vs sandbox
+- receiveState from (chrome page / sandbox)
+- receiveMessage from (chrome page / sandbox) - will be used for rendering path changes
 
-Observed Improvable
--------------------
-[ ] - event names stack, suggest for dynamically enlarge svg height
-[x] - width can be increased
-[x] - bold the line from `state.current().last` route
+- requestState from (chrome devtool / sandbox dev devtool)
+- requestMessage from (chrome devtool / sandbox dev devtool)

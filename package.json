@@ -8,6 +8,7 @@
   "scripts": {
     "prebuild": "eslint lib test",
     "build": "rollup -c",
+    "zip": "zip -r chrome-extension{.zip,}",
     "watch": "rollup -c -w",
     "live": "find lib/ | entr rollup -c",
     "pretest": "npm run build",

@@ -2,6 +2,9 @@ var State = statechart.State;
 
 var word = State.define({concurrent: true}, function() {
   this.state('bold', function() {
+    this.exit(function() {
+
+    })
     this.state('off', function() {
       this.event('toggleBold', function() { this.goto('../on'); });
     });
@@ -12,6 +15,9 @@ var word = State.define({concurrent: true}, function() {
   });
 
   this.state('underline', function() {
+    this.enter(function() {
+
+    })
     this.state('off', function() {
       this.event('toggleUnderline', function() { this.goto('../on'); });
     });
@@ -22,6 +28,12 @@ var word = State.define({concurrent: true}, function() {
   });
 
   this.state('align', function() {
+    this.exit(function() {
+
+    })
+    this.enter(function() {
+
+    })
     this.state('left');
     this.state('right');
     this.state('center');

@@ -28,7 +28,7 @@
   vertical-align: top;
 }
 
-#events_control {
+.subcontrols {
   overflow: hidden;
 }
 button {

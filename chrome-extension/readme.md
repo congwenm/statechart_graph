@@ -16,11 +16,14 @@ Upcoming work
       * events
 [x] - enter / exit indicator
 [x] - castration
-[ ] - ui format
-[ ] - performance
+[ ] - ui format (lost context)
+[ ] - performance (performance of rendering)
 [ ] - remove node
-
-
+[ ] - auto reload
+[ ] - refactor ideas
+      * [ ] break out linear logic so that using this in chrome devtool is same as using in sandbox just with different MidwareObject.
+      * [ ] Change the behavior for loader so it shows up at the correct interval
+      * [ ] consider sending a separate event for live reload, possible use path to send a smaller patch of Change.
 
 Observed Improvable
 -------------------

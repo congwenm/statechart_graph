@@ -18,6 +18,9 @@ chrome.devtools.panels.create(
       panelWindow.getStateRequest = function(varname, substatesPath) {
         sendToInjectedScript(varname, substatesPath);
       };
+      panelWindow.toggleAutoReload = function(swich) {
+        chrome.devtools.inspectedWindow.eval(`toggleAutoReload(${!!swich})`)
+      };
 
       if (stateObj && stateObj.name && panelWindow) {
         sendState(stateObj);
@@ -26,9 +29,9 @@ chrome.devtools.panels.create(
   }
 )
 
-function sendState(state) {
+function sendState(state, isRefresh) {
   // panelWindow.stateObj = message.state;
-  panelWindow.initiate(state);
+  panelWindow.initiate(state, isRefresh);
 }
 
 chrome.devtools.panels.elements.createSidebarPane(
@@ -58,7 +61,7 @@ backgroundPageConnection.onMessage.addListener(function (message) {
   // console.debug('RECEIVED message from background page', message);
   stateObj = message.state;
   if (message.state && message.state.name && panelWindow) {
-    sendState(message.state);
+    sendState(message.state, message.isRefresh);
   }
 });
 

@@ -19,14 +19,16 @@ Upcoming work
 [ ] - ui format (lost context)
 [ ] - performance (performance of rendering)
 [ ] - remove node
-[ ] - auto reload
-[ ] - refactor ideas
-      * [ ] break out linear logic so that using this in chrome devtool is same as using in sandbox just with different MidwareObject.
-      * [ ] Change the behavior for loader so it shows up at the correct interval
-      * [ ] consider sending a separate event for live reload, possible use path to send a smaller patch of Change.
+[x] - auto reload
+[x] - reinstate substatepath so we can send a small portion of the changes.
+[x] - consider sending a separate event for live reload, possible use path to send a smaller patch of Change.
+[ ] - Change the behavior for loader so it shows up at the correct interval
+[x] - break out linear logic so that using this in chrome devtool is same as using in sandbox just with different MidwareObject.
 
-Observed Improvable
--------------------
-[ ] - event names stack, suggest for dynamically enlarge svg height
-[x] - width can be increased
-[x] - bold the line from `state.current().last` route
+
+Things needed to be considered for extracting middleware/bridge for chrome-extension vs sandbox
+- receiveState from (chrome page / sandbox)
+- receiveMessage from (chrome page / sandbox) - will be used for rendering path changes
+
+- requestState from (chrome devtool / sandbox dev devtool)
+- requestMessage from (chrome devtool / sandbox dev devtool)

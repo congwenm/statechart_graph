@@ -1,82 +1,115 @@
 <!doctype html>
-<link rel="stylesheet" href="./static/style.css" media="screen" title="no title" charset="utf-8"/>
+<link rel="stylesheet" href="./Graph/style.css" media="screen" title="no title" charset="utf-8"/>
 
 <body>
 
-<div id="control_panel">
+  <style>
+  #app {
+    padding: 10px;
+    border: 2px gray solid;
+  }
+  </style>
 
-  <div id="variable_input" class="subcontrols">
-    <input type="text" placeholder="Window Variable" id="globalVarInput" />
-    <button id="loadGraphBtn">Load Graph</button>
+  <script>
+    const toggleBold = a => window.word.send('toggleBold')
+    const toggleUnderline = a => window.word.send('toggleUnderline')
+  </script>
+  <div id="app">
+    Current application state
+    <button type="button" name="button" onClick="toggleBold()">toggle bold</button>
+    <button type="button" name="button" onClick="toggleUnderline()">toggle underline</button>
+  </div>
 
-    <span style="padding-left: 20px">
-      <label class="toggleLbl" for="castrationInput">
-        Depth:
+<div id="graph-app" style="position: relative">
+  <div id="control_panel">
+
+    <div id="variable_input" class="subcontrols">
+      <input type="text" placeholder="Window Variable" id="globalVarInput" />
+      <button id="loadGraphBtn">Load Graph</button>
+
+      <span style="padding-left: 20px">
+        <label class="toggleLbl" for="castrationInput">
+          Depth:
+        </label>
+
+        <input type="text"
+          id="castrationInput"
+          placeholder="e.g. 5"
+          size="5"
+        />
+      </span>
+    </div>
+
+    <div class="subcontrols">
+      <input type="text" placeholder="substate/substate" id="substateInput" />
+    </div>
+  </div>
+
+  <div id="float_panel">
+    <div id="events_control" class="subcontrols">
+      <span class="checkbox">
+        <input type="checkbox" id="toggleEventsShowHide" >
+        <label data-on="ON" data-off="OFF"></label>
+      </span>
+
+      <label class="toggleLbl" for="toggleEventsShowHide">
+        Events
       </label>
+    </div>
 
-      <input type="text"
-        id="castrationInput"
-        placeholder="e.g. 5"
-        size="5"
-      />
-    </span>
+    <div id="events_control" class="subcontrols">
+      <span class="checkbox">
+        <input type="checkbox" id="toggleEnterExitHandlers" >
+        <label data-on="ON" data-off="OFF"></label>
+      </span>
+
+      <label class="toggleLbl" for="toggleEventsShowHide">
+        Enter/Exit
+      </label>
+    </div>
+
+    <div id="autoreload_control" class="subcontrols">
+      <span class="checkbox">
+        <input type="checkbox" id="toggleAutoReloadBtn">
+        <label data-on="ON" data-off="OFF"></label>
+      </span>
+
+      <label class="toggleLbl" for="toggleAutoReloadBtn">
+        Live Reload
+      </label>
+    </div>
   </div>
 
-  <div class="subcontrols">
-    <input type="text" placeholder="substate/substate" id="substateInput" />
-  </div>
-</div>
-
-<div id="float_panel">
-  <div id="events_control" class="subcontrols">
-    <span class="checkbox">
-      <input type="checkbox" id="toggleEventsShowHide" onclick="graph.toggleEvents(event)">
-      <label data-on="ON" data-off="OFF"></label>
-    </span>
-
-    <label class="toggleLbl" for="toggleEventsShowHide">
-      Events
-    </label>
-  </div>
-
-  <div id="events_control" class="subcontrols">
-    <span class="checkbox">
-      <input type="checkbox" id="toggleEnterExitHandlers" onclick="graph.toggleEnterExitHandlers(event)">
-      <label data-on="ON" data-off="OFF"></label>
-    </span>
-
-    <label class="toggleLbl" for="toggleEventsShowHide">
-      Enter/Exit
-    </label>
-  </div>
-</div>
 
 
-
-<div id="loader" style="display: none">
-  <div class="sk-circle">
-    <div class="sk-circle1 sk-child"></div>
-    <div class="sk-circle2 sk-child"></div>
-    <div class="sk-circle3 sk-child"></div>
-    <div class="sk-circle4 sk-child"></div>
-    <div class="sk-circle5 sk-child"></div>
-    <div class="sk-circle6 sk-child"></div>
-    <div class="sk-circle7 sk-child"></div>
-    <div class="sk-circle8 sk-child"></div>
-    <div class="sk-circle9 sk-child"></div>
-    <div class="sk-circle10 sk-child"></div>
-    <div class="sk-circle11 sk-child"></div>
-    <div class="sk-circle12 sk-child"></div>
+  <div id="loader" style="display: none">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
   </div>
 </div>
 
-<script src="./static/d3.min.js"></script>
-<script src="./static/statechart.min.js" charset="utf-8"></script>
+<script src="./Graph/d3.min.js"></script>
+<script src="./Graph/statechart.min.js" charset="utf-8"></script>
 
-<script src="./static/word.js" charset="utf-8"></script>
-<script src="./static/cmm_state.js" charset="utf-8"></script>
-<script src="statechart-graph.js" charset="utf-8"></script>
-<script src="./static/script.js" charset="utf-8"></script>
+<script src="./Graph/injected_script.js" charset="utf-8"></script>
+
+<script src="./Graph/word.js" charset="utf-8"></script>
+<script src="./Graph/cmm_extracted_state.js" charset="utf-8"></script>
+
+<script src="./statechart-graph.js" charset="utf-8"></script>
+<script src="./sandbox.js" charset="utf-8"></script>
 <!-- <script type="text/javascript" src="tilfordTree.js"> </script> -->
 
 </body>

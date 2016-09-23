@@ -175,4 +175,4 @@ Object.assign(StatechartAnalyzer.prototype, {
 })
 
 
-window.statechartAnalyzer = window.statechartAnalyzer || new StatechartAnalyzer({ isChromeExtension: true });
+window.statechartAnalyzer = window.statechartAnalyzer || new StatechartAnalyzer();

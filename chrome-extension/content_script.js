@@ -5,9 +5,7 @@
 var injectedScript = document.createElement('script');
 injectedScript.src = chrome.extension.getURL('injected_script.js')
 
-injectedScript.onload = function() {
-  this.remove();
-};
+injectedScript.onload = function() { this.remove() };
 (document.head || document.documentElement).appendChild(injectedScript);
 
 // window.postMessage({
@@ -36,5 +34,5 @@ window.addEventListener('message', function(event) {
     return;
   }
 
-  chrome.runtime.sendMessage(message);
+  chrome.extension.sendMessage(message, (res) => console.log('response', res))
 })

@@ -13,11 +13,34 @@
   <script>
     const toggleBold = a => window.word.send('toggleBold')
     const toggleUnderline = a => window.word.send('toggleUnderline')
+    const changeAlign = a => window.word.send('changeAlign')
   </script>
   <div id="app">
-    Current application state
+
+    <div style="border: 1px dotted #ccc">
+      <h1>Fancy styling app</h1>
+      <ul id="subject">
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </li>
+      </ul>
+    </div>
+
     <button type="button" name="button" onClick="toggleBold()">toggle bold</button>
     <button type="button" name="button" onClick="toggleUnderline()">toggle underline</button>
+    <button type="button" name="button" onClick="changeAlign()">change align</button>
+    <label style="margin-left: 20px">Bullets Toggle:</label>
+    <button type="button" name="button" onClick="word.send('regularClicked')">Regular</button>
+    <button type="button" name="button" onClick="word.send('numberClicked')">Number</button>
   </div>
 
 <div id="graph-app" style="position: relative">

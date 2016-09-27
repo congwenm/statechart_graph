@@ -1,3 +1,6 @@
+(function IIFE() {
+
+
 function convertEvent(events) {
   var results = [];
   for (var k in events) {
@@ -24,10 +27,10 @@ function getSubState(state, string) {
 }
 
 
-function locateState(_cachedRootstateVar, _cachedSubstatesPath) {
+function locateState(_cachedRootstateVar, _cachedSubstatesPath, rootState) {
   var state;
   try {
-    state = getStateDefinition(_cachedRootstateVar);
+    state = rootState || getStateDefinition(_cachedRootstateVar);
     // ignoring substatesPath due to difficulty in changing current branchoff algorithm
     if (_cachedSubstatesPath && _cachedSubstatesPath.length) {
       state = getSubState(state, _cachedSubstatesPath);
@@ -112,14 +115,13 @@ Object.assign(StatechartAnalyzer.prototype, {
     return (this.isChromeExtension ? sendStateToExtension : sendStateToWindow)();
   },
 
-  sendStateActiveness(rootstateVar, substatesPath, isRefresh) {
+  sendStateActiveness(rootstate, substatesPath, isRefresh) {
     console.log('SENDSTATE ACTIVENESS:')
-    this._cachedRootstateVar = this._cachedRootstateVar || rootstateVar || 'CMM.statechart';
     this._cachedSubstatesPath = substatesPath || ''
 
     var sendStateActivenessToExtension = () => {
       var state = this._convertActivenessToJSON(
-        locateState(this._cachedRootstateVar, this._cachedSubstatesPath)
+        locateState(this._cachedRootstateVar, this._cachedSubstatesPath, rootstate)
       );
       window.postMessage({
         greeting: 'injected script says hello there!',
@@ -139,7 +141,6 @@ Object.assign(StatechartAnalyzer.prototype, {
 
     return (this.isChromeExtension ? sendStateActivenessToExtension : sendStateActivenessToWindow)();
   },
-  // ***************************** end of sendState
 
   toggleAutoReload(swich) {
 
@@ -156,8 +157,8 @@ Object.assign(StatechartAnalyzer.prototype, {
       }
     }
 
-    const debouncedSendState = debounce(()=> {
-      this.sendStateActiveness(this._cachedRootstateVar, this._cachedSubstatesPath);
+    const debouncedSendState = debounce((rootState)=> {
+      this.sendStateActiveness(rootState, this._cachedSubstatesPath);
     }, 50)
 
 
@@ -165,7 +166,7 @@ Object.assign(StatechartAnalyzer.prototype, {
       var _goto = this._goto
       window.statechart.State.prototype.goto = function() {
         _goto.apply(this, arguments)
-        debouncedSendState()
+        debouncedSendState(this.root())
       };
     }
     else {
@@ -175,4 +176,7 @@ Object.assign(StatechartAnalyzer.prototype, {
 })
 
 
-window.statechartAnalyzer = window.statechartAnalyzer || new StatechartAnalyzer();
+window.statechartAnalyzer = window.statechartAnalyzer || new StatechartAnalyzer({ isChromeExtension: false });
+
+
+}());

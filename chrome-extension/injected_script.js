@@ -1,5 +1,8 @@
 (function IIFE() {
 
+if (!window.statechart || !window.statechart.State) {
+  return;
+}
 
 function convertEvent(events) {
   var results = [];

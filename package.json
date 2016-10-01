@@ -7,7 +7,7 @@
   "jsnext:main": "dist/statechart-graph.mjs",
   "scripts": {
     "prebuild": "eslint lib test",
-    "build": "rollup -c",
+    "build": "rollup -c; zip -r chrome-extension chrome-extension",
     "zip": "zip -r chrome-extension{.zip,}",
     "watch": "rollup -c -w",
     "live": "find lib/ | entr rollup -c",

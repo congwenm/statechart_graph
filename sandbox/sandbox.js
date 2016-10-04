@@ -87,7 +87,6 @@ window.StatechartMiddlewareSingleton = (function() {
       });
 
       this.graph.buildTree()
-      this.toggleAutoReloadBtn.click()
     }
   });
 
@@ -106,6 +105,7 @@ window.statechartMiddleware = StatechartMiddlewareSingleton.getInstance({
 })
 
 statechartMiddleware.requestState()
+statechartMiddleware.toggleAutoReloadBtn.click()
 
 // testing
 // window.hotkey.register(['q', 'e', 'w'], () => {

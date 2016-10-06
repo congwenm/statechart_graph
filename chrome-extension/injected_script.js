@@ -93,14 +93,12 @@ Object.assign(StatechartAnalyzer.prototype, {
   sendState(rootstateVar, substatesPath, isRefresh) {
     console.log('SENDSTATE:')
     // used for caching
-    this._cachedRootstateVar = rootstateVar || this._cachedRootstateVar 
-    var rootVar = this._cachedRootstateVar || 'CMM.statechart';
-
+    this._cachedRootstateVar = rootstateVar || this._cachedRootstateVar || 'CMM.statechart'
     this._cachedSubstatesPath = substatesPath || ''
 
     var sendStateToExtension = () => {
       var state = this._convertToJSON(
-        locateState(rootVar, this._cachedSubstatesPath)
+        locateState(this._cachedRootstateVar, this._cachedSubstatesPath)
       );
       window.postMessage({
         greeting: 'injected script says hello there!',
@@ -113,7 +111,7 @@ Object.assign(StatechartAnalyzer.prototype, {
 
     var sendStateToWindow = () => {
       var state = this._convertToJSON(
-        locateState(rootVar, this._cachedSubstatesPath)
+        locateState(this._cachedRootstateVar, this._cachedSubstatesPath)
       );
       window.statechartMiddleware.receiveRootstate({ state, substatesPath: this._cachedSubstatesPath, isRefresh})
     }

@@ -6,7 +6,6 @@
   <style>
   #app {
     padding: 10px;
-    border: 2px gray solid;
   }
   </style>
 
@@ -18,16 +17,14 @@
   <div id="app">
 
     <div style="border: 1px dotted #ccc">
-      <h1 style="text-align: center">Fancy styling app</h1>
-      <ul id="subject">
+      <h3 style="text-align: center">Stylish Paragraph</h3>
+      <ul id="subject" style="padding: 0 50px">
         <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </li>
+        <br>
         <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </li>
-        <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
         </li>
       </ul>
     </div>
@@ -40,86 +37,96 @@
     <button type="button" name="button" onClick="word.send('numberClicked')">Number</button>
   </div>
 
-  <h1 style="text-align: center">Statechart Graph</h1>
-<div id="graph-app" style="position: relative">
-  <div id="control_panel">
+  <div style="height: 100px; text-align: center">
+    <style>
+      img.down_arrow {
+        width: 50px;
+        height: 50px;
+        padding-top: 20px;
+      }
+    </style>
+    <img src="./down_arrow.jpg" class="down_arrow">
+  </div>
 
-    <div id="variable_input" class="subcontrols">
-      <input type="text" placeholder="Window Variable" id="globalVarInput" />
-      <button id="loadGraphBtn">Load Graph</button>
+  <div id="graph-app" style="position: relative">
+    <div id="control_panel">
 
-      <span style="padding-left: 20px">
-        <label class="toggleLbl" for="castrationInput">
-          Depth:
+      <div id="variable_input" class="subcontrols">
+        <input type="text" placeholder="Window Variable" id="globalVarInput" />
+        <button id="loadGraphBtn">Load Graph</button>
+
+        <span style="padding-left: 20px">
+          <label class="toggleLbl" for="castrationInput">
+            Depth:
+          </label>
+
+          <input type="text"
+            id="castrationInput"
+            placeholder="e.g. 5"
+            size="5"
+          />
+        </span>
+      </div>
+
+      <div class="subcontrols">
+        <input type="text" placeholder="substate/substate" id="substateInput" />
+      </div>
+    </div>
+
+    <div id="float_panel">
+      <div id="events_control" class="subcontrols">
+        <span class="checkbox">
+          <input type="checkbox" id="toggleEventsShowHide" >
+          <label data-on="ON" data-off="OFF"></label>
+        </span>
+
+        <label class="toggleLbl" for="toggleEventsShowHide">
+          Events
         </label>
+      </div>
 
-        <input type="text"
-          id="castrationInput"
-          placeholder="e.g. 5"
-          size="5"
-        />
-      </span>
+      <div id="events_control" class="subcontrols">
+        <span class="checkbox">
+          <input type="checkbox" id="toggleEnterExitHandlers" >
+          <label data-on="ON" data-off="OFF"></label>
+        </span>
+
+        <label class="toggleLbl" for="toggleEventsShowHide">
+          Enter/Exit
+        </label>
+      </div>
+
+      <div id="autoreload_control" class="subcontrols">
+        <span class="checkbox">
+          <input type="checkbox" id="toggleAutoReloadBtn">
+          <label data-on="ON" data-off="OFF"></label>
+        </span>
+
+        <label class="toggleLbl" for="toggleAutoReloadBtn">
+          Live Reload
+        </label>
+      </div>
     </div>
 
-    <div class="subcontrols">
-      <input type="text" placeholder="substate/substate" id="substateInput" />
-    </div>
-  </div>
 
-  <div id="float_panel">
-    <div id="events_control" class="subcontrols">
-      <span class="checkbox">
-        <input type="checkbox" id="toggleEventsShowHide" >
-        <label data-on="ON" data-off="OFF"></label>
-      </span>
 
-      <label class="toggleLbl" for="toggleEventsShowHide">
-        Events
-      </label>
-    </div>
-
-    <div id="events_control" class="subcontrols">
-      <span class="checkbox">
-        <input type="checkbox" id="toggleEnterExitHandlers" >
-        <label data-on="ON" data-off="OFF"></label>
-      </span>
-
-      <label class="toggleLbl" for="toggleEventsShowHide">
-        Enter/Exit
-      </label>
-    </div>
-
-    <div id="autoreload_control" class="subcontrols">
-      <span class="checkbox">
-        <input type="checkbox" id="toggleAutoReloadBtn">
-        <label data-on="ON" data-off="OFF"></label>
-      </span>
-
-      <label class="toggleLbl" for="toggleAutoReloadBtn">
-        Live Reload
-      </label>
+    <div id="loader" style="display: none">
+      <div class="sk-circle">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+      </div>
     </div>
   </div>
-
-
-
-  <div id="loader" style="display: none">
-    <div class="sk-circle">
-      <div class="sk-circle1 sk-child"></div>
-      <div class="sk-circle2 sk-child"></div>
-      <div class="sk-circle3 sk-child"></div>
-      <div class="sk-circle4 sk-child"></div>
-      <div class="sk-circle5 sk-child"></div>
-      <div class="sk-circle6 sk-child"></div>
-      <div class="sk-circle7 sk-child"></div>
-      <div class="sk-circle8 sk-child"></div>
-      <div class="sk-circle9 sk-child"></div>
-      <div class="sk-circle10 sk-child"></div>
-      <div class="sk-circle11 sk-child"></div>
-      <div class="sk-circle12 sk-child"></div>
-    </div>
-  </div>
-</div>
 
 <script src="./Graph/d3.min.js"></script>
 <script src="./Graph/statechart.min.js" charset="utf-8"></script>

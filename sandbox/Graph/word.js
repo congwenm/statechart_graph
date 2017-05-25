@@ -10,16 +10,19 @@ var word = State.define({concurrent: true}, function() {
     });
 
     this.state('on', function() {
-      this.state('onOne', function() {
-        this.enter(function() {
-          subject.style.fontWeight = 600
-        })
+      this.enter(() => {
+        subject.style.fontWeight = 800
       })
-      this.state('onTwo', function() {
-        this.enter(function() {
-          subject.style.fontWeight = 800
-        })
-      })
+      // this.state('onOne', function() {
+      //   this.enter(function() {
+      //     subject.style.fontWeight = 600
+      //   })
+      // })
+      // this.state('onTwo', function() {
+      //   this.enter(function() {
+      //     subject.style.fontWeight = 800
+      //   })
+      // })
       this.exit(function() {
         console.log('leaving bold state')
       })
@@ -92,7 +95,11 @@ var word = State.define({concurrent: true}, function() {
   this.state('bullets', function() {
     this.state('none', function() {
       this.enter(function() {
-        subject.style.listStyleType = 'none'
+        subject.style.listStyleType = 'none';
+        [].forEach.call(
+          subject.children, 
+          child => child.style.listStyleType = 'none'
+        )
       })
       this.event('regularClicked', function() { this.goto('../regular'); })
       this.event('numberClicked', function() { this.goto('../number'); })
@@ -100,7 +107,11 @@ var word = State.define({concurrent: true}, function() {
 
     this.state('regular', function() {
       this.enter(function() {
-        subject.style.listStyleType = 'disc'
+        subject.style.listStyleType = 'disc';
+        [].forEach.call(
+          subject.children, 
+          child => child.style.listStyleType = 'disc'
+        )
       })
       this.event('regularClicked', function() { this.goto('../none'); })
       this.event('numberClicked', function() { this.goto('../number'); })
@@ -108,7 +119,11 @@ var word = State.define({concurrent: true}, function() {
 
     this.state('number', function() {
       this.enter(function() {
-        subject.style.listStyleType = 'decimal'
+        subject.style.listStyleType = 'decimal';
+        [].forEach.call(
+          subject.children, 
+          child => child.style.listStyleType = 'decimal'
+        )
       })
       this.event('regularClicked', function() { this.goto('../regular'); })
       this.event('numberClicked', function() { this.goto('../none'); })

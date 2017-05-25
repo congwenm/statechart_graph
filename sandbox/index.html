@@ -1,83 +1,156 @@
 <!doctype html>
 <link rel="stylesheet" href="./Graph/style.css" media="screen" title="no title" charset="utf-8"/>
 
-<body>
-
-  <style>
-  #app {
-    padding: 10px;
-  }
-  </style>
-
+<body style="overflow-x: hidden">
   <script>
+    // initiation
     const toggleBold = a => window.word.send('toggleBold')
     const toggleUnderline = a => window.word.send('toggleUnderline')
     const changeAlign = a => window.word.send('changeAlign')
   </script>
-  <div id="app">
 
-    <div style="border: 1px dotted #ccc">
-      <h3 style="text-align: center">Stylish Paragraph</h3>
-      <ul id="subject" style="padding: 0 50px">
-        <li>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </li>
-        <br>
-        <li>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-        </li>
-      </ul>
+  <script src="./lib/materialize/js/materialize.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./lib/materialize/css/materialize.min.css">
+
+  <!-- Materialize Card -->
+  <div
+    style="
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      top: 0;
+      width: 400px;
+    "
+  >
+    <div class="card blue-grey darken-1" style="margin: 0; height: 100%;">
+      <div class="card-content white-text" style="padding-top: 10px; padding-bottom: 0px;">
+        <h3 class="card-title">Stylish List</h3>
+        <div>
+          <ul id="subject">
+            <li>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </li>
+            <br>
+            <li>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </li>
+            <br>
+            <li>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-action">
+        <div style="padding: 5px">
+          <label style="width: 70px; display: inline-block">Bold:</label>
+          <button 
+            class="waves-effect waves-light btn"
+            type="button" 
+            name="button" 
+            onClick="toggleBold()"
+          >
+            <i class="material-icons">swap_horiz</i> 
+            <div style="display: inline-block; vertical-align: top;">Toggle<div style="padding: 5px">
+          </button>
+        </div>
+      
+        <div style="padding: 5px">
+          <label style="width: 70px; display: inline-block">Underline:</label>
+          <button 
+            class="waves-effect waves-light btn"
+            type="button" 
+            name="button" 
+            onClick="toggleUnderline()"
+          >
+            <i class="material-icons">swap_horiz</i> 
+            <div style="display: inline-block; vertical-align: top;">Toggle</div>
+          </button>
+        </div>
+        
+        <div style="padding: 5px">
+          <label style="width: 70px; display: inline-block">Align:</label>
+          <button 
+            class="waves-effect waves-light btn"
+            type="button" 
+            name="button" 
+            onClick="changeAlign()"
+          >
+            <i class="material-icons">trending_flat</i> 
+            <div style="display: inline-block; vertical-align: top;">Shift</div>
+          </button>
+        </div>
+
+        <div style="padding: 5px">
+          <label style="width: 70px; display: inline-block">Bullets:</label>
+          <button 
+            class="waves-effect waves-light btn"
+            type="button" 
+            name="button" 
+            onClick="word.send('regularClicked')"
+          >
+            <i class="material-icons">list</i> 
+            <div style="display: inline-block; vertical-align: top;">Reg</div>
+          </button>
+          <button 
+            class="waves-effect waves-light btn"
+            type="button" 
+            name="button" 
+            onClick="word.send('numberClicked')"
+          >
+            <i class="material-icons">list</i> 
+            <div style="display: inline-block; vertical-align: top;">No.</div>
+          </button>
+        </div> 
+      </div>
     </div>
-
-    <button type="button" name="button" onClick="toggleBold()">toggle bold</button>
-    <button type="button" name="button" onClick="toggleUnderline()">toggle underline</button>
-    <button type="button" name="button" onClick="changeAlign()">change align</button>
-    <label style="margin-left: 20px">Bullets Toggle:</label>
-    <button type="button" name="button" onClick="word.send('regularClicked')">Regular</button>
-    <button type="button" name="button" onClick="word.send('numberClicked')">Number</button>
   </div>
 
-  <div style="height: 100px; text-align: center">
-    <style>
-      img.down_arrow {
-        width: 50px;
-        height: 50px;
-        padding-top: 20px;
-      }
-    </style>
-    <img src="./down_arrow.jpg" class="down_arrow">
-  </div>
-
-  <div id="graph-app" style="position: relative">
+  <div id="graph-app" style="position: relative; padding-left: 400px">
     <div id="control_panel">
+      <div id="variable_input" class="subcontrols" style="border: 0; padding: 0"  >
+        <label style="display: none">
+          <input type="text" placeholder="Window Variable" id="globalVarInput" />
+        </label>
 
-      <div id="variable_input" class="subcontrols">
-        <input type="text" placeholder="Window Variable" id="globalVarInput" />
-        <button id="loadGraphBtn">Load Graph</button>
+        <button id="loadGraphBtn" class="waves-effect waves-light btn">Reload Graph</button>
 
-        <span style="padding-left: 20px">
+        <span style="padding-left: 20px; display: none">
           <label class="toggleLbl" for="castrationInput">
             Depth:
           </label>
 
-          <input type="text"
-            id="castrationInput"
-            placeholder="e.g. 5"
-            size="5"
-          />
+          <label style="display: inline-block">
+            Path
+            <input type="text"
+              id="castrationInput"
+              placeholder="e.g. 5"
+              size="5"
+            />
+          </label>
         </span>
       </div>
 
-      <div class="subcontrols">
-        <input type="text" placeholder="substate/substate" id="substateInput" />
+      <label for="substateInput" style="font-size: 20px">Path:</label>
+      <div class="subcontrols" style="border: 0; padding: 0">
+        <input type="text" 
+          placeholder="state path" 
+          id="substateInput" 
+          value="/" 
+          style="
+            margin-bottom: 0; 
+            width: initial; 
+            height: 35px;
+          "
+        />
       </div>
     </div>
 
     <div id="float_panel">
       <div id="events_control" class="subcontrols">
-        <span class="checkbox">
-          <input type="checkbox" id="toggleEventsShowHide" >
-          <label data-on="ON" data-off="OFF"></label>
+        <span>
+          <input type="checkbox" class="filled-in" id="toggleEventsShowHide" >
+          <label data-on="ON" data-off="OFF" for="toggleEventsShowHide"></label>
         </span>
 
         <label class="toggleLbl" for="toggleEventsShowHide">
@@ -86,9 +159,9 @@
       </div>
 
       <div id="events_control" class="subcontrols">
-        <span class="checkbox">
-          <input type="checkbox" id="toggleEnterExitHandlers" >
-          <label data-on="ON" data-off="OFF"></label>
+        <span>
+          <input type="checkbox" class="filled-in" id="toggleEnterExitHandlers" >
+          <label data-on="ON" data-off="OFF" for="toggleEnterExitHandlers"></label>
         </span>
 
         <label class="toggleLbl" for="toggleEventsShowHide">
@@ -97,9 +170,9 @@
       </div>
 
       <div id="autoreload_control" class="subcontrols">
-        <span class="checkbox">
-          <input type="checkbox" id="toggleAutoReloadBtn">
-          <label data-on="ON" data-off="OFF"></label>
+        <span>
+          <input type="checkbox" class="filled-in" id="toggleAutoReloadBtn">
+          <label data-on="ON" data-off="OFF" for ="toggleAutoReloadBtn"></label>
         </span>
 
         <label class="toggleLbl" for="toggleAutoReloadBtn">

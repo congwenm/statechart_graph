@@ -1,6 +1,7 @@
 ## Statechart Tilford Graph
 
 This module creates a tilford tree graph for [Statechart.js](https://github.com/burrows/statechart.js/tree/master)
+Downloadable as a Chrome DevTool Extension [Statechart DevTool](https://chrome.google.com/webstore/detail/statechartjs-devtool/oibjblkmkmnfljnlolcgfbbknepcgafk)
 
 ####Code:
 ```javascript
